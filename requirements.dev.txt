@@ -1,0 +1,5 @@
+# Base requirements
+-r requirements.txt
+
+# Additional libraries useful for dev
+pytest==3.0.2
