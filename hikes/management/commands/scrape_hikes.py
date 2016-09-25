@@ -1,8 +1,10 @@
 import json
+import os
 import re
 
 import requests
 from bs4 import BeautifulSoup, Comment
+from django.conf import settings
 from django.core.management.base import BaseCommand
 
 
@@ -17,7 +19,8 @@ class Command(BaseCommand):
         parser.add_argument('--hikes_url', default='http://www.roanokeoutside.com/land/hiking/all-hikes/',
                             help='Link to Roanoke Outside Hikes page.')
         parser.add_argument('--no_write', action='store_true', help='Output to stdout rather than a file.')
-        parser.add_argument('-f', '--file', default='hikes/data/all_hikes.json', help='Path to output file.')
+        parser.add_argument('-f', '--file', default=os.path.join(settings.BASE_DIR, 'hikes/data/all_hikes.json'),
+                            help='Path to output file.')
 
     def handle(self, *args, **options):
         hikes = []
